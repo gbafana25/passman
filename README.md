@@ -20,6 +20,7 @@ Password manager for Linux, written in Python 3.  Utilizes gpg and doesn't requi
 
 Create a config file in the base directory that you want to use, and name it `config.json`.  Categories must be placed into the config file ahead of time.
 
+This file can also be found in ![sample_config.json](https://github.com/gbafana25/passman/blob/main/sample_config.json)
 ```json
 {
 	"username": "user",
