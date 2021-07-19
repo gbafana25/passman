@@ -7,9 +7,8 @@ import sys
 
 
 
-
 def read_config_file():
-	with open(sys.argv[2], "r") as conf_file:
+	with open("config.json", "r") as conf_file:
 		try:
 			data = json.load(conf_file) 
 			try:
@@ -23,12 +22,11 @@ def read_config_file():
 			print("configuration file isn't formatted correctly")
 
 
-def create_folders(folders):
-	for path in folders:
-		try:
-			os.mkdir(path, 0o700)
-		except FileExistsError:
-			print("\"" + path + "\" folder already exists")
+def create_folder(folder):
+	try:
+		os.mkdir(folder, 0o700)
+	except FileExistsError:
+		print("\"" + folder + "\" folder already exists")
 
 
 
@@ -38,41 +36,34 @@ def main():
 		sys.exit("Not enough arguments supplied")
 	if sys.argv[1] == '-c':
 		config_data = read_config_file()
-		create_folders(config_data['categories'])
-		create_pass(config_data['email'], config_data['categories'])
+		create_folder(sys.argv[2])
+		create_pass(config_data['email'], sys.argv[2])
 		sys.exit()
 	if sys.argv[1] == '-u':
 		config_data = read_config_file()
-		get_pass(config_data['categories'])		
+		get_pass(sys.argv[2])	
 
 
-def check_category(categories):
-	for c in categories:
-		print(c)
-	cat = input("Category (case sensitive): ")
-	if cat not in categories:
-		sys.exit("Category was not spelled correctly")
-	os.chdir(cat)
 
-
-def create_pass(email, categories):
-	site_name = input("Name of website: ")
+def create_pass(email, site_name):
+	os.chdir(site_name)
+	user = input("Website Username: ")
 	password = input("Website Password: ")
-	check_category(categories)
 	with open("temp_pass.txt", "w+") as tmp:
 		tmp.write(password)
 	
-	command = 'gpg --encrypt -r ' + email + ' --output ' + site_name + '.enc temp_pass.txt' 		
+	command = 'gpg --encrypt -r ' + email + ' --output ' + user + '.enc temp_pass.txt' 		
 	os.system(command)
 	os.remove("temp_pass.txt")
 
 
-def get_pass(categories):
-	check_category(categories)
-	website = input("Website Name: ")
-
-	command = 'gpg --decrypt ' + website + '.enc | xclip -l 1 -selection clipboard'
-	os.system(command)
+def get_pass(website):
+	os.chdir(website)
+	user = input("Website username: ")
+	command = 'gpg --decrypt ' + user + '.enc'
+	output = os.popen(command).read()
+	write_to_clip = 'echo ' + output + ' | xclip -l 1 -selection clipboard'
+	os.system(write_to_clip)
 	print("Password for " + website + " can now be pasted with Ctrl-v.\nIt will disappear after one paste.")
 
 
