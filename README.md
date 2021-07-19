@@ -42,7 +42,7 @@ This file can also be found in ![sample_config.json](https://github.com/gbafana2
 
 ## TODO
 
-- [ ] add comments and register multiple attempts to enter key password
+- [ ] add comments 
 - [x] ~Make running from command line easier by adding flags and passing path to conf file~
 - [x] ~Organize passwords into files by their corresponding website, and folders of general categories~
 - [x] ~Encrypt and decrypt passwords with `gpg` (via os.system)~
