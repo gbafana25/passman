@@ -1,21 +1,30 @@
 # passman
 
-Password manager for Linux, written in Python 3.  Utilizes gpg and doesn't require third party libraries (yet)
+Password manager for Linux, written in Python 3.  No external python dependencies are used.  Passwords are stored in the following hierarchy:
 
-**Currently if you take more than 1 attempt to input your gpg key password, the sites password won't get copied to the clipboard.**
+```
+	-- Website name
+		|
+		-- username.enc
+```
+
+This layout lets you store multiple accounts for one website.
 
 ## Dependencies
 
-### GPG
- `sudo apt-get install gpg`
+ - `gpg`
+ - `python3`
+ - `xclip`
 
-### Python 3
- `sudo apt-get install python3`
- 
  *For development, it should be setup in a python virtualenv*
  - `python3 -m venv env`
 
 ## Usage
+
+ - to save a password
+	- `./passman.py -c website_name`
+ - to access a password
+	- `./passman.py -u website_name`
 
 ### Configuration
 
@@ -27,14 +36,9 @@ This file can also be found in ![sample_config.json](https://github.com/gbafana2
 	"username": "user",
 	"email": "foo@bar.com",
 	"store_path": "/path/to/dir",
-	"categories": ["Email", "Code"]
 }
 ```
 
-### Running
-
-`python3 passman.py` or `chmod +x passman.py` and `./passman.py`
-An shell alias can also be added
 
 ## TODO
 

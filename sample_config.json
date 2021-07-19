@@ -2,5 +2,4 @@
 	"username": "user",
 	"email": "foo@bar.com",
 	"store_path": "/path/to/dir",
-	"categories": ["Email", "Code"]
 }
