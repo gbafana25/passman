@@ -9,9 +9,15 @@ import sys
 
 
 def read_config_file():
-	with open("config.json", "r") as conf_file:
+	with open(sys.argv[2], "r") as conf_file:
 		try:
 			data = json.load(conf_file) 
+			try:
+				os.mkdir(data['store_path'])
+			except FileExistsError:
+				print("Storage directory " + data['store_path'] + " already exists")
+
+			os.chdir(data['store_path'])
 			return data
 		except JSONDecodeError:
 			print("configuration file isn't formatted correctly")
@@ -27,17 +33,16 @@ def create_folders(folders):
 
 
 
-config_data = read_config_file()
-create_folders(config_data['categories'])
-
-
 def main():
-	if len(sys.argv) < 2:
+	if len(sys.argv) < 3:
 		sys.exit("Not enough arguments supplied")
 	if sys.argv[1] == '-c':
+		config_data = read_config_file()
+		create_folders(config_data['categories'])
 		create_pass(config_data['email'], config_data['categories'])
 		sys.exit()
 	if sys.argv[1] == '-u':
+		config_data = read_config_file()
 		get_pass(config_data['categories'])		
 
 
@@ -73,6 +78,6 @@ def get_pass(categories):
 
 
 if __name__ == "__main__":
-	print("Passman v1.0\n  Copyright (C) 2021  Gareth Moodley") 
+	print("Passman v1.0\n\nCopyright (C) 2021  Gareth Moodley") 
 	main()
 	
