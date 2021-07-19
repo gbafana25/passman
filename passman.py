@@ -73,6 +73,6 @@ def get_pass(categories):
 
 
 if __name__ == "__main__":
-	print("Passman v1.0")
+	print("Passman v1.0\n  Copyright (C) 2021  Gareth Moodley") 
 	main()
 	
