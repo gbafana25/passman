@@ -60,10 +60,11 @@ def create_pass(email, site_name):
 def get_pass(website):
 	os.chdir(website)
 	user = input("Website username: ")
-	command = 'gpg --decrypt ' + user + '.enc'
-	output = os.popen(command).read()
-	write_to_clip = 'echo ' + output + ' | xclip -l 1 -selection clipboard'
-	os.system(write_to_clip)
+	command = 'gpg --decrypt ' + user + '.enc | xclip -l 1 -selection clipboard'
+	#output = os.popen(command).read()
+	#write_to_clip = 'echo ' + output + ' | xclip -l 1 -selection clipboard'
+	#os.system(write_to_clip)
+	os.system(command)
 	print("Password for " + website + " can now be pasted with Ctrl-v.\nIt will disappear after one paste.")
 
 

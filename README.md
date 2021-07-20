@@ -29,6 +29,8 @@ The inspiration for this project was ![`pass`](https://passwordstore.org), a she
  - to access a password
 	- `./passman.py -u website_name`
 
+ *If you are using this without X server started, the password won't be in the clipboard, since it uses the `clipboard` option in `xclip`, not the primary or secondary
+
 ### Configuration
 
 Create a config file in the base directory that you want to use, and name it `config.json`.  Categories must be placed into the config file ahead of time. 
