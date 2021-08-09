@@ -3,7 +3,7 @@
 import os
 import json
 import sys
-
+import getpass
 
 
 
@@ -48,7 +48,7 @@ def main():
 def create_pass(email, site_name):
 	os.chdir(site_name)
 	user = input("Website Username: ")
-	password = input("Website Password: ")
+	password = getpass.getpass("Website Password: ")
 	with open("temp_pass.txt", "w+") as tmp:
 		tmp.write(password)
 	
