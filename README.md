@@ -22,16 +22,6 @@ The inspiration for this project was ![`pass`](https://passwordstore.org), a she
  *For development, it should be setup in a python virtualenv*
  - `python3 -m venv env`
 
-## Usage
-
-**You are no longer required to type in the full website username, they will appear in a list now**
-
- - to save a password
-	- `./passman.py -c website_name`
- - to access a password
-	- `./passman.py -u website_name`
-
- *If you are using this without X server started, the password won't be in the clipboard, since it uses the `clipboard` option in `xclip`, not the primary or secondary
 
 ### Configuration
 
@@ -45,6 +35,24 @@ This file can also be found in ![`sample_config.json`](https://github.com/gbafan
 	"store_path": "/path/to/dir",
 }
 ```
+If you want to run `passman` from anywhere, then you can:
+ - add the repo directory to the `$PATH` variable
+ - put it in a directory already in the path (`/usr/bin`, `/usr/local/bin/`, etc)
+ - make sure that the path to the config file (found at the top of the program) is set to the absolute path
+
+
+
+## Usage
+
+ - to save a password
+	- `./passman.py -c website_name`
+	- you will be prompted to enter the username and password (it won't echo)
+ - to access a password
+	- `./passman.py -u website_name`
+	- enter the number listed before the username
+	- you will be prompted to enter your gpg password
+
+ *If you are using this without X server started, the password won't be in the clipboard, since it uses the `clipboard` option in `xclip`, not the primary or secondary*
 
 
 ## TODO
