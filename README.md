@@ -24,6 +24,8 @@ The inspiration for this project was ![`pass`](https://passwordstore.org), a she
 
 ## Usage
 
+**You are no longer required to type in the full website username, they will appear in a list now**
+
  - to save a password
 	- `./passman.py -c website_name`
  - to access a password
