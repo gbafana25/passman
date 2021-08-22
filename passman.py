@@ -42,7 +42,7 @@ def main():
 	if sys.argv[1] == '-u':
 		config_data = read_config_file()
 		get_pass(sys.argv[2])	
-
+	
 
 
 def create_pass(email, site_name):
@@ -59,11 +59,18 @@ def create_pass(email, site_name):
 
 def get_pass(website):
 	os.chdir(website)
-	user = input("Website username: ")
-	command = 'gpg --decrypt ' + user + '.enc | xclip -l 1 -selection clipboard'
-	#output = os.popen(command).read()
-	#write_to_clip = 'echo ' + output + ' | xclip -l 1 -selection clipboard'
-	#os.system(write_to_clip)
+	users = os.listdir()
+	for u in range(len(users)):
+		print(str(u) + ") " + users[u][:-4])
+	selected = input("Website username (number): ")
+	try:
+		if(int(selected) > len(users)):
+			print("Bad input")
+			sys.exit()
+	except ValueError:
+		print("Input must be number")
+		sys.exit()
+	command = 'gpg --decrypt ' + selected + '.enc | xclip -l 1 -selection clipboard'
 	os.system(command)
 	print("Password for " + website + " can now be pasted with Ctrl-v.\nIt will disappear after one paste.")
 
