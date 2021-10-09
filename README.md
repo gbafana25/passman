@@ -42,6 +42,7 @@ If you want to run `passman` from anywhere, then you can:
 
 
 
+
 ## Usage
 
  - to save a password
@@ -52,12 +53,12 @@ If you want to run `passman` from anywhere, then you can:
 	- enter the number listed before the username
 	- you will be prompted to enter your gpg password
 
- *If you are using this without X server started, the password won't be in the clipboard, since it uses the `clipboard` option in `xclip`, not the primary or secondary*
+ **Note: The default number of pastes for xclip is 3. This is required with chromium (only one that I tested other than firefox)**
 
 
 ## TODO
 
 - [ ] add comments 
-- [x] ~Make running from command line easier by adding flags and passing path to conf file~
-- [x] ~Organize passwords into files by their corresponding website, and folders of general categories~
-- [x] ~Encrypt and decrypt passwords with `gpg` (via os.system)~
+- [x] Make running from command line easier by adding flags and passing path to conf file
+- [x] Organize passwords into files by their corresponding website, and folders of general categories
+- [x] Encrypt and decrypt passwords with `gpg` (via os.system)

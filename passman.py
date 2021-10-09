@@ -70,7 +70,9 @@ def get_pass(website):
 	except ValueError:
 		print("Input must be number")
 		sys.exit()
-	command = 'gpg --decrypt ' + users[int(selected)] + ' | xclip -l 1 -selection clipboard'
+	# xclip has to wait for 3 loops
+	# when using chromium, then it will be erased from the clipboard
+	command = 'gpg --decrypt ' + users[int(selected)] + ' | xclip -l 3 -selection clipboard'
 	os.system(command)
 	print("Password for " + website + " can now be pasted with Ctrl-v.\nIt will disappear after one paste.")
 
