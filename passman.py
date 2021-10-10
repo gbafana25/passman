@@ -60,16 +60,19 @@ def create_pass(email, site_name):
 def get_pass(website):
 	os.chdir(website)
 	users = os.listdir()
-	for u in range(len(users)):
-		print(str(u) + ") " + users[u][:-4])
-	selected = input("Website username (number): ")
-	try:
-		if(int(selected) > len(users)):
-			print("Bad input")
+	if(len(users) != 1):
+		for u in range(len(users)):
+			print(str(u) + ") " + users[u][:-4])
+		selected = input("Website username (number): ")
+		try:
+			if(int(selected) > len(users)):
+				print("Bad input")
+				sys.exit()
+		except ValueError:
+			print("Input must be number")
 			sys.exit()
-	except ValueError:
-		print("Input must be number")
-		sys.exit()
+	else:
+		selected = 0
 	# xclip has to wait for 3 loops
 	# when using chromium, then it will be erased from the clipboard
 	command = 'gpg --decrypt ' + users[int(selected)] + ' | xclip -l 3 -selection clipboard'

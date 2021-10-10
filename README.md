@@ -51,6 +51,7 @@ If you want to run `passman` from anywhere, then you can:
  - to access a password
 	- `./passman.py -u website_name`
 	- enter the number listed before the username
+		- if you only have one account for that site, it will go straight to the password prompt
 	- you will be prompted to enter your gpg password
 
  **Note: The default number of pastes for xclip is 3. This is required with chromium (only one that I tested other than firefox)**
