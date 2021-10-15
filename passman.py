@@ -73,6 +73,7 @@ def get_pass(website):
 			sys.exit()
 	else:
 		selected = 0
+		print(users[0])
 	# xclip has to wait for 3 loops
 	# when using chromium, then it will be erased from the clipboard
 	command = 'gpg --decrypt ' + users[int(selected)] + ' | xclip -l 3 -selection clipboard'
